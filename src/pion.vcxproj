@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugRelease|Win32">
+      <Configuration>DebugRelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugRelease|x64">
+      <Configuration>DebugRelease</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{61F4AAD5-3608-4223-9F4B-B0DA3E3FDF88}</ProjectGuid>
+    <RootNamespace>pion</RootNamespace>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>
+    </WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>output\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>output\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>output\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>output\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|Win32'">
+    <OutDir>output\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|x64'">
+    <OutDir>output\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(PlatformToolset)\windesktop\msvcstl\static\rt-dyn\$(PlatformShortName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;_STLP_DEBUG=1;_DEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_WIN32_WINNT=0x0500;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;_STLP_DEBUG=1;_DEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_WIN32_WINNT=0x0500;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;NDEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_SECURE_SCL=0;_HAS_ITERATOR_DEBUGGING=0;_WIN32_WINNT=0x0500;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;NDEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_SECURE_SCL=0;_HAS_ITERATOR_DEBUGGING=0;_WIN32_WINNT=0x0500;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;BOOST_FILESYSTEM_VERSION=3;BOOST_FILESYSTEM_NO_DEPRECATED;BOOST_LEXICAL_CAST_ASSUME_C_LOCALE;NDEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_SECURE_SCL=0;_HAS_ITERATOR_DEBUGGING=0;_WIN32_WINNT=0x0500;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DebugInformationFormat />
+      <CallingConvention>Cdecl</CallingConvention>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugRelease|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;BOOST_FILESYSTEM_VERSION=3;BOOST_FILESYSTEM_NO_DEPRECATED;BOOST_LEXICAL_CAST_ASSUME_C_LOCALE;NDEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;_SECURE_SCL=0;_HAS_ITERATOR_DEBUGGING=0;_WIN32_WINNT=0x0500;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DebugInformationFormat />
+      <CallingConvention>Cdecl</CallingConvention>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="services\AllowNothingService.cpp" />
+    <ClCompile Include="services\LogService.cpp" />
+    <ClCompile Include="src\admin_rights.cpp" />
+    <ClCompile Include="src\algorithm.cpp" />
+    <ClCompile Include="services\CookieService.cpp" />
+    <ClCompile Include="services\EchoService.cpp" />
+    <ClCompile Include="services\FileService.cpp" />
+    <ClCompile Include="services\HelloService.cpp" />
+    <ClCompile Include="src\http_auth.cpp" />
+    <ClCompile Include="src\http_basic_auth.cpp" />
+    <ClCompile Include="src\http_cookie_auth.cpp" />
+    <ClCompile Include="src\http_message.cpp" />
+    <ClCompile Include="src\http_parser.cpp" />
+    <ClCompile Include="src\http_plugin_server.cpp" />
+    <ClCompile Include="src\http_reader.cpp" />
+    <ClCompile Include="src\http_server.cpp" />
+    <ClCompile Include="src\http_types.cpp" />
+    <ClCompile Include="src\http_writer.cpp" />
+    <ClCompile Include="src\logger.cpp" />
+    <ClCompile Include="src\plugin.cpp" />
+    <ClCompile Include="src\process.cpp" />
+    <ClCompile Include="src\scheduler.cpp" />
+    <ClCompile Include="src\spdy_decompressor.cpp" />
+    <ClCompile Include="src\spdy_parser.cpp" />
+    <ClCompile Include="src\tcp_server.cpp" />
+    <ClCompile Include="src\tcp_timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\pion\admin_rights.hpp" />
+    <ClInclude Include="include\pion\algorithm.hpp" />
+    <ClInclude Include="include\pion\http\auth.hpp" />
+    <ClInclude Include="include\pion\http\basic_auth.hpp" />
+    <ClInclude Include="include\pion\config.hpp" />
+    <ClInclude Include="include\pion\http\http_connection.hpp" />
+    <ClInclude Include="include\pion\tcp\connection.hpp" />
+    <ClInclude Include="include\pion\http\cookie_auth.hpp" />
+    <ClInclude Include="include\pion\test\unit_test.hpp" />
+    <ClInclude Include="include\websocketpp\base64\base64.hpp" />
+    <ClInclude Include="include\websocketpp\client.hpp" />
+    <ClInclude Include="include\websocketpp\close.hpp" />
+    <ClInclude Include="include\websocketpp\common\asio.hpp" />
+    <ClInclude Include="include\websocketpp\common\asio_ssl.hpp" />
+    <ClInclude Include="include\websocketpp\common\chrono.hpp" />
+    <ClInclude Include="include\websocketpp\common\connection_hdl.hpp" />
+    <ClInclude Include="include\websocketpp\common\cpp11.hpp" />
+    <ClInclude Include="include\websocketpp\common\functional.hpp" />
+    <ClInclude Include="include\websocketpp\common\md5.hpp" />
+    <ClInclude Include="include\websocketpp\common\memory.hpp" />
+    <ClInclude Include="include\websocketpp\common\network.hpp" />
+    <ClInclude Include="include\websocketpp\common\platforms.hpp" />
+    <ClInclude Include="include\websocketpp\common\random.hpp" />
+    <ClInclude Include="include\websocketpp\common\regex.hpp" />
+    <ClInclude Include="include\websocketpp\common\stdint.hpp" />
+    <ClInclude Include="include\websocketpp\common\system_error.hpp" />
+    <ClInclude Include="include\websocketpp\common\thread.hpp" />
+    <ClInclude Include="include\websocketpp\common\time.hpp" />
+    <ClInclude Include="include\websocketpp\common\type_traits.hpp" />
+    <ClInclude Include="include\websocketpp\concurrency\basic.hpp" />
+    <ClInclude Include="include\websocketpp\concurrency\none.hpp" />
+    <ClInclude Include="include\websocketpp\config\asio.hpp" />
+    <ClInclude Include="include\websocketpp\config\asio_client.hpp" />
+    <ClInclude Include="include\websocketpp\config\asio_no_tls.hpp" />
+    <ClInclude Include="include\websocketpp\config\asio_no_tls_client.hpp" />
+    <ClInclude Include="include\websocketpp\config\boost_config.hpp" />
+    <ClInclude Include="include\websocketpp\config\core.hpp" />
+    <ClInclude Include="include\websocketpp\config\core_client.hpp" />
+    <ClInclude Include="include\websocketpp\config\debug.hpp" />
+    <ClInclude Include="include\websocketpp\config\debug_asio.hpp" />
+    <ClInclude Include="include\websocketpp\config\debug_asio_no_tls.hpp" />
+    <ClInclude Include="include\websocketpp\config\minimal_client.hpp" />
+    <ClInclude Include="include\websocketpp\config\minimal_server.hpp" />
+    <ClInclude Include="include\websocketpp\connection.hpp" />
+    <ClInclude Include="include\websocketpp\connection_base.hpp" />
+    <ClInclude Include="include\websocketpp\endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\endpoint_base.hpp" />
+    <ClInclude Include="include\websocketpp\error.hpp" />
+    <ClInclude Include="include\websocketpp\extensions\extension.hpp" />
+    <ClInclude Include="include\websocketpp\extensions\permessage_deflate\disabled.hpp" />
+    <ClInclude Include="include\websocketpp\extensions\permessage_deflate\enabled.hpp" />
+    <ClInclude Include="include\websocketpp\frame.hpp" />
+    <ClInclude Include="include\websocketpp\http\constants.hpp" />
+    <ClInclude Include="include\websocketpp\http\impl\parser.hpp" />
+    <ClInclude Include="include\websocketpp\http\impl\request.hpp" />
+    <ClInclude Include="include\websocketpp\http\impl\response.hpp" />
+    <ClInclude Include="include\websocketpp\http\parser.hpp" />
+    <ClInclude Include="include\websocketpp\http\request.hpp" />
+    <ClInclude Include="include\websocketpp\http\response.hpp" />
+    <ClInclude Include="include\websocketpp\impl\connection_impl.hpp" />
+    <ClInclude Include="include\websocketpp\impl\endpoint_impl.hpp" />
+    <ClInclude Include="include\websocketpp\impl\utilities_impl.hpp" />
+    <ClInclude Include="include\websocketpp\logger\basic.hpp" />
+    <ClInclude Include="include\websocketpp\logger\levels.hpp" />
+    <ClInclude Include="include\websocketpp\logger\stub.hpp" />
+    <ClInclude Include="include\websocketpp\logger\syslog.hpp" />
+    <ClInclude Include="include\websocketpp\message_buffer\alloc.hpp" />
+    <ClInclude Include="include\websocketpp\message_buffer\message.hpp" />
+    <ClInclude Include="include\websocketpp\message_buffer\pool.hpp" />
+    <ClInclude Include="include\websocketpp\processors\base.hpp" />
+    <ClInclude Include="include\websocketpp\processors\hybi00.hpp" />
+    <ClInclude Include="include\websocketpp\processors\hybi07.hpp" />
+    <ClInclude Include="include\websocketpp\processors\hybi08.hpp" />
+    <ClInclude Include="include\websocketpp\processors\hybi13.hpp" />
+    <ClInclude Include="include\websocketpp\processors\processor.hpp" />
+    <ClInclude Include="include\websocketpp\random\none.hpp" />
+    <ClInclude Include="include\websocketpp\random\random_device.hpp" />
+    <ClInclude Include="include\websocketpp\roles\client_endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\roles\server_endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\server.hpp" />
+    <ClInclude Include="include\websocketpp\sha1\sha1.hpp" />
+    <ClInclude Include="include\websocketpp\transport\asio\base.hpp" />
+    <ClInclude Include="include\websocketpp\transport\asio\connection.hpp" />
+    <ClInclude Include="include\websocketpp\transport\asio\endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\transport\asio\security\base.hpp" />
+    <ClInclude Include="include\websocketpp\transport\asio\security\none.hpp" />
+    <ClInclude Include="include\websocketpp\transport\asio\security\tls.hpp" />
+    <ClInclude Include="include\websocketpp\transport\base\connection.hpp" />
+    <ClInclude Include="include\websocketpp\transport\base\endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\transport\debug\base.hpp" />
+    <ClInclude Include="include\websocketpp\transport\debug\connection.hpp" />
+    <ClInclude Include="include\websocketpp\transport\debug\endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\transport\iostream\base.hpp" />
+    <ClInclude Include="include\websocketpp\transport\iostream\connection.hpp" />
+    <ClInclude Include="include\websocketpp\transport\iostream\endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\transport\stub\base.hpp" />
+    <ClInclude Include="include\websocketpp\transport\stub\connection.hpp" />
+    <ClInclude Include="include\websocketpp\transport\stub\endpoint.hpp" />
+    <ClInclude Include="include\websocketpp\uri.hpp" />
+    <ClInclude Include="include\websocketpp\utf8_validator.hpp" />
+    <ClInclude Include="include\websocketpp\utilities.hpp" />
+    <ClInclude Include="include\websocketpp\version.hpp" />
+    <ClInclude Include="services\AllowNothingService.hpp" />
+    <ClInclude Include="services\CookieService.hpp" />
+    <ClInclude Include="include\pion\spdy\decompressor.hpp" />
+    <ClInclude Include="services\EchoService.hpp" />
+    <ClInclude Include="include\pion\error.hpp" />
+    <ClInclude Include="services\FileService.hpp" />
+    <ClInclude Include="include\pion\hash_map.hpp" />
+    <ClInclude Include="services\HelloService.hpp" />
+    <ClInclude Include="include\pion\logger.hpp" />
+    <ClInclude Include="include\pion\http\message.hpp" />
+    <ClInclude Include="include\pion\spdy\parser.hpp" />
+    <ClInclude Include="include\pion\http\parser.hpp" />
+    <ClInclude Include="include\pion\plugin.hpp" />
+    <ClInclude Include="include\pion\plugin_manager.hpp" />
+    <ClInclude Include="include\pion\http\plugin_server.hpp" />
+    <ClInclude Include="include\pion\http\plugin_service.hpp" />
+    <ClInclude Include="include\pion\process.hpp" />
+    <ClInclude Include="include\pion\http\reader.hpp" />
+    <ClInclude Include="include\pion\http\request.hpp" />
+    <ClInclude Include="include\pion\http\request_reader.hpp" />
+    <ClInclude Include="include\pion\http\request_writer.hpp" />
+    <ClInclude Include="include\pion\http\response.hpp" />
+    <ClInclude Include="include\pion\http\response_reader.hpp" />
+    <ClInclude Include="include\pion\http\response_writer.hpp" />
+    <ClInclude Include="include\pion\scheduler.hpp" />
+    <ClInclude Include="include\pion\tcp\server.hpp" />
+    <ClInclude Include="include\pion\http\server.hpp" />
+    <ClInclude Include="include\pion\tcp\stream.hpp" />
+    <ClInclude Include="include\pion\tcp\timer.hpp" />
+    <ClInclude Include="include\pion\spdy\types.hpp" />
+    <ClInclude Include="include\pion\http\types.hpp" />
+    <ClInclude Include="include\pion\user.hpp" />
+    <ClInclude Include="include\pion\http\writer.hpp" />
+    <ClInclude Include="services\LogService.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\boost.headers.1.65.1\build\native\boost.headers.targets" Condition="Exists('..\packages\boost.headers.1.65.1\build\native\boost.headers.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\boost.headers.1.65.1\build\native\boost.headers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.headers.1.65.1\build\native\boost.headers.targets'))" />
+  </Target>
+</Project>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>pion.headers</id>
+        <version>6.0.65.1</version>
+        <title>Pion C++ library (headers)</title>
+        <authors>Splunk</authors>
+        <owners>ODANT</owners>
+		<licenseUrl>http://www.boost.org/users/license.html</licenseUrl>
+		<projectUrl>https://github.com/splunk/pion</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>C++ framework for building lightweight HTTP interfaces. This package should only be installed as a dependency. 
+	(This is not the package you are looking for).</description>
+		<summary>C++ framework for building lightweight HTTP interfaces.</summary>
+		<copyright>The Pion Network Library is published under the Boost Software License. </copyright>
+		<tags>native c++ http server</tags>
+    </metadata>
+    <files>
+        <file src="..\include\**" target="lib\native\include" />
+		<file src="pion.headers.targets" target="build\native\pion.headers.targets"/>
+    </files>
+</package>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>pion.libs.v140_xp.windesktop.msvcstl.static.rt-dyn</id>
+        <version>6.0.65.1</version>
+        <title>Pion C++ library (v140_xp.windesktop.msvcstl.static.rt-dyn libs)</title>
+        <authors>Splunk</authors>
+        <owners>ODANT</owners>
+		<licenseUrl>http://www.boost.org/users/license.html</licenseUrl>
+		<projectUrl>https://github.com/splunk/pion</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>C++ framework for building lightweight HTTP interfaces. This package should only be installed as a dependency. 
+	(This is not the package you are looking for).</description>
+		<summary>C++ framework for building lightweight HTTP interfaces.</summary>
+		<copyright>The Pion Network Library is published under the Boost Software License. </copyright>
+		<tags>native c++ http server</tags>
+        <dependencies>
+          <dependency id="pion.headers" version="6.0.65.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\output\v140_xp\windesktop\msvcstl\static\rt-dyn\**" target="lib\native\v140_xp\windesktop\msvcstl\static\rt-dyn\" />
+        <file src="pion.libs.v140_xp.windesktop.msvcstl.static.rt-dyn.targets" target="build\native\pion.libs.v140_xp.windesktop.msvcstl.static.rt-dyn.targets" />
+    </files>
+</package>
