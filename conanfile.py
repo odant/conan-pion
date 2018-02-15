@@ -1,5 +1,4 @@
-from conans import ConanFile, CMake
-import os
+from conans import ConanFile, CMake, tools
 
 
 class PionConan(ConanFile):
@@ -44,8 +43,5 @@ class PionConan(ConanFile):
         cmake.build()
         cmake.install()
         
-    def package(self):
-        pass
-
     def package_info(self):
-        pass
+        self.cpp_info.libs = tools.collect_libs(self)
