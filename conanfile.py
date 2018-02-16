@@ -45,3 +45,4 @@ class PionConan(ConanFile):
         
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.defines = ["PION_STATIC_LINKING"]
