@@ -14,7 +14,7 @@ class PionConan(ConanFile):
         "arch": ["x86_64", "x86"]
     }
     generators = "cmake"
-    exports_sources = "src/*", "CMakeLists.txt"
+    exports_sources = "src/*", "CMakeLists.txt", "FindPion.cmake"
     no_copy_source = True
     build_policy = "missing"
     
@@ -42,6 +42,9 @@ class PionConan(ConanFile):
         cmake.configure()
         cmake.build()
         cmake.install()
+        
+    def package(self):
+        self.copy("FindPion.cmake", src=".", dst=".")
         
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)

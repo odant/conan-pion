@@ -4,19 +4,26 @@ cmake_minimum_required(VERSION 3.0)
 include(${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
-#find_package(websocketpp REQUIRED)
-#find_package(Boost REQUIRED COMPONENTS
-#    system
-#)
-#find_package(Threads REQUIRED)
+find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS
+    filesystem
+    regex
+    thread
+    system
+)
+find_package(Pion REQUIRED COMPONENTS services)
 
 enable_testing()
 
 add_executable(test_custom_plugin test_custom_plugin.cpp)
 target_link_libraries(test_custom_plugin
-    CONAN_PKG::pion
-#    Boost::system
-#    Threads::Threads
+    Pion::pion
+    Boost::filesystem
+    Boost::regex
+    Boost::thread
+    Boost::system
+#    Threads::Threads 
+# from Boost::thread
 )
 set_target_properties(test_custom_plugin
     PROPERTIES
@@ -31,9 +38,11 @@ add_test(
 
 add_executable(test_plugin test_plugin.cpp)
 target_link_libraries(test_plugin
-    CONAN_PKG::pion
-#    Boost::system
-#    Threads::Threads
+    Pion::services
+    Boost::filesystem
+    Boost::regex
+    Boost::thread
+    Boost::system
 )
 set_target_properties(test_plugin
     PROPERTIES
