@@ -113,7 +113,7 @@ if(BZIP2_FOUND)
     set(PION_HAVE_BZLIB 1)
 endif()
 
-find_package(OpenSSL)
+#find_package(OpenSSL)
 if(OPENSSL_FOUND)
     include_directories(${OPENSSL_INCLUDE_DIR})
     set(PION_HAVE_SSL 1)
