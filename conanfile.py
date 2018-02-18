@@ -17,12 +17,18 @@ class PionConan(ConanFile):
     exports_sources = "src/*", "CMakeLists.txt", "FindPion.cmake"
     no_copy_source = True
     build_policy = "missing"
-    
+
+    def configure(self):
+        # Only C++11
+        if "libcxx" in self.settings.compiler.fields:
+            if self.settings.compiler.libcxx == "libstdc++":
+                raise Exception("This package is only compatible with libstdc++11")
+
     def requirements(self):
         self.requires("zlib/[~=1.2.11]@%s/stable" % self.user)
         #self.requires("openssl/[~=1.1.0g]@%s/testing" % self.user)
         self.requires("boost/1.66.0@%s/testing" % self.user)
-    
+
     def build(self):
         cmake = CMake(self)
         #
@@ -42,10 +48,10 @@ class PionConan(ConanFile):
         cmake.configure()
         cmake.build()
         cmake.install()
-        
+
     def package(self):
         self.copy("FindPion.cmake", src=".", dst=".")
-        
+
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.defines = ["PION_STATIC_LINKING"]
