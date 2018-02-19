@@ -7,6 +7,7 @@ conan_basic_setup(TARGETS)
 find_package(Threads REQUIRED)
 find_package(Boost REQUIRED COMPONENTS
     filesystem
+    iostreams
     regex
     thread
     system
@@ -19,6 +20,7 @@ add_executable(test_custom_plugin test_custom_plugin.cpp)
 target_link_libraries(test_custom_plugin
     Pion::pion
     Boost::filesystem
+    Boost::iostreams
     Boost::regex
     Boost::thread
     Boost::system
@@ -40,6 +42,7 @@ add_executable(test_plugin test_plugin.cpp)
 target_link_libraries(test_plugin
     Pion::services
     Boost::filesystem
+    Boost::iostreams
     Boost::regex
     Boost::thread
     Boost::system
