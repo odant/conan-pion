@@ -32,13 +32,18 @@ if(Pion_FOUND)
     mark_as_advanced(Pion_INCLUDE_DIR Pion_LIBRARY)
     
     if(NOT TARGET Pion::pion)
-      add_library(Pion::pion UNKNOWN IMPORTED)
-      set_target_properties(Pion::pion PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES ${Pion_INCLUDE_DIR}
-        IMPORTED_LOCATION ${Pion_LIBRARY}
-        # Add defines from package_info
-        INTERFACE_COMPILE_DEFINITIONS ${CONAN_COMPILE_DEFINITIONS_PION}
-      )
+        add_library(Pion::pion UNKNOWN IMPORTED)
+        set(_pion_depends Boost::filesystem Boost::regex Boost::thread Boost::system)
+        if(UNIX)
+            set(_pion_depends ${_pion_depends} "dl")
+        endif()
+        set_target_properties(Pion::pion PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES ${Pion_INCLUDE_DIR}
+            IMPORTED_LOCATION ${Pion_LIBRARY}
+            INTERFACE_LINK_LIBRARIES "${_pion_depends}" # Boost depends, for link with Pion::services
+            INTERFACE_COMPILE_DEFINITIONS ${CONAN_COMPILE_DEFINITIONS_PION} # Add defines from package_info
+        )
+        unset(_pion_depends)
     endif()
 
     set(_enable_services)
@@ -59,15 +64,16 @@ if(Pion_FOUND)
             REQUIRED_VARS Pion_services_LIBRARY
         )
 
-        set(Pion_LIBRARIES ${Pion_LIBRARIES} ${Pion_services_LIBRARY})
+        set(Pion_LIBRARIES ${Pion_services_LIBRARY} ${Pion_LIBRARIES})
         mark_as_advanced(Pion_services_LIBRARY)
         
         if(NOT TARGET Pion::services)
             add_library(Pion::services UNKNOWN IMPORTED)
             set_target_properties(Pion::services PROPERTIES
                 IMPORTED_LOCATION ${Pion_services_LIBRARY}
-                    INTERFACE_LINK_LIBRARIES Pion::pion
+                INTERFACE_LINK_LIBRARIES Pion::pion
             )
         endif()
     endif()
 endif()
+
