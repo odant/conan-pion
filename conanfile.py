@@ -25,9 +25,12 @@ class PionConan(ConanFile):
                 raise Exception("This package is only compatible with libstdc++11")
 
     def requirements(self):
-        self.requires("zlib/[~=1.2.11]@%s/stable" % self.user)
+        self.requires("zlib/[>=1.2.3]@%s/stable" % self.user)
         #self.requires("openssl/[~=1.1.0g]@%s/testing" % self.user)
-        self.requires("boost/1.66.0@%s/testing" % self.user)
+        self.requires("boost/[>=1.35.0]@%s/testing" % self.user)
+        
+    def package_id(self):
+        self.info.requires["boost"].full_package_mode()
 
     def build(self):
         cmake = CMake(self)
