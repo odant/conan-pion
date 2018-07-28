@@ -28,12 +28,14 @@ class PionConan(ConanFile):
         self.requires("zlib/[>=1.2.3]@%s/stable" % self.user)
         #self.requires("openssl/[~=1.1.0g]@%s/testing" % self.user)
         self.requires("boost/[>=1.35.0]@%s/testing" % self.user)
-        
+
     def package_id(self):
         self.info.requires["boost"].full_package_mode()
 
     def build(self):
-        cmake = CMake(self)
+        build_type = "RelWithDebInfo" if self.settings.build_type == "Release" else "Debug"
+        cmake = CMake(self, build_type=build_type)
+        cmake.verbose = True
         #
         cmake.definitions["CMAKE_INSTALL_PREFIX:STRING"] = self.package_folder.replace("\\", "/")
         cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE:BOOL"] = "ON"
@@ -53,7 +55,9 @@ class PionConan(ConanFile):
         cmake.install()
 
     def package(self):
-        self.copy("FindPion.cmake", src=".", dst=".")
+        self.copy("FindPion.cmake", dst=".", src=".", keep_path=False)
+        self.copy("pion.pdb", dst="bin", src="lib", keep_path=False)
+        self.copy("pion_services.pdb", dst="bin", src="lib", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
