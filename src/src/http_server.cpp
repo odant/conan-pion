@@ -28,7 +28,7 @@ const unsigned int          server::MAX_REDIRECTS = 10;
 tcp::connection_ptr server::create_connection()
 {
 	    // create a new TCP connection object
-    tcp::connection_ptr new_connection(pion::http::connection::create(get_io_service(),
+    tcp::connection_ptr new_connection(pion::http::connection::create(get_executor(),
                                                                       m_ssl_context, m_ssl_flag, m_max_content_length,
                                                                       boost::bind(&server::finish_connection,
                                                                                   this, _1),

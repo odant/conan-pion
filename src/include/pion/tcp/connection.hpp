@@ -292,7 +292,7 @@ public:
     {
         // query a list of matching endpoints
         boost::system::error_code ec;
-        boost::asio::ip::tcp::resolver resolver(m_ssl_socket.lowest_layer().get_io_service());
+        boost::asio::ip::tcp::resolver resolver(m_ssl_socket.lowest_layer().get_executor());
         boost::asio::ip::tcp::resolver::query query(remote_server,
             boost::lexical_cast<std::string>(remote_port),
             boost::asio::ip::tcp::resolver::query::numeric_service);
@@ -658,9 +658,9 @@ public:
         return get_remote_endpoint().port();
     }
     
-    /// returns reference to the io_service used for async operations
-    inline boost::asio::io_service& get_io_service(void) {
-        return m_ssl_socket.lowest_layer().get_io_service();
+    /// returns reference to the executor used for async operations
+    inline boost::asio::executor& get_executor(void) {
+        return m_ssl_socket.lowest_layer().get_executor();
     }
 
     /// returns non-const reference to underlying TCP socket object

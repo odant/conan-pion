@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class PionConan(ConanFile):
     name = "pion"
-    version = "5.0.7"
+    version = "5.0.7+1"
     license = "Boost Software License 1.0 - https://raw.githubusercontent.com/splunk/pion/develop/COPYING"
     description = "C++ framework for building lightweight HTTP interfaces"
     url = "https://github.com/odant/conan-pion"
@@ -27,7 +27,7 @@ class PionConan(ConanFile):
     def requirements(self):
         self.requires("zlib/[>=1.2.3]@%s/stable" % self.user)
         #self.requires("openssl/[~=1.1.0g]@%s/testing" % self.user)
-        self.requires("boost/[>=1.35.0]@%s/stable" % self.user)
+        self.requires("boost/[>=1.70.0]@%s/stable" % self.user)
 
     def package_id(self):
         self.info.requires["boost"].full_package_mode()
