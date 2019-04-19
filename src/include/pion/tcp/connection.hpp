@@ -658,8 +658,8 @@ public:
         return get_remote_endpoint().port();
     }
     
-    /// returns reference to the executor used for async operations
-    inline boost::asio::executor& get_executor(void) {
+    /// returns executor used for async operations
+    inline socket_type::lowest_layer_type::executor_type get_executor(void) {
         return m_ssl_socket.lowest_layer().get_executor();
     }
 
