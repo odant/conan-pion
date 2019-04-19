@@ -156,7 +156,7 @@ protected:
     virtual void after_stopping(void) {}
     
     /// returns an async I/O service used to schedule work
-    inline boost::asio::io_service& get_executor(void) { return m_active_scheduler.get_executor(); }
+    inline boost::asio::io_context& get_io_context(void) { return m_active_scheduler.get_io_context(); }
     
     
     /// primary logging interface used by this class

@@ -25,9 +25,9 @@ namespace tcp {     // begin namespace tcp
 server::server(scheduler& sched, const unsigned int tcp_port)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
     m_active_scheduler(sched),
-    m_tcp_acceptor(m_active_scheduler.get_executor()),
+    m_tcp_acceptor(m_active_scheduler.get_io_context()),
 #ifdef PION_HAVE_SSL
-    m_ssl_context(m_active_scheduler.get_executor(), boost::asio::ssl::context::sslv23),
+    m_ssl_context(m_active_scheduler.get_io_context(), boost::asio::ssl::context::sslv23),
 #else
     m_ssl_context(0),
 #endif
@@ -37,9 +37,9 @@ server::server(scheduler& sched, const unsigned int tcp_port)
 server::server(scheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
     m_active_scheduler(sched),
-    m_tcp_acceptor(m_active_scheduler.get_executor()),
+    m_tcp_acceptor(m_active_scheduler.get_io_context()),
 #ifdef PION_HAVE_SSL
-    m_ssl_context(m_active_scheduler.get_executor(), boost::asio::ssl::context::sslv23),
+    m_ssl_context(m_active_scheduler.get_io_context(), boost::asio::ssl::context::sslv23),
 #else
     m_ssl_context(0),
 #endif
@@ -49,9 +49,9 @@ server::server(scheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
 server::server(const unsigned int tcp_port)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
     m_default_scheduler(), m_active_scheduler(m_default_scheduler),
-    m_tcp_acceptor(m_active_scheduler.get_executor()),
+    m_tcp_acceptor(m_active_scheduler.get_io_context()),
 #ifdef PION_HAVE_SSL
-    m_ssl_context(m_active_scheduler.get_executor(), boost::asio::ssl::context::sslv23),
+    m_ssl_context(m_active_scheduler.get_io_context(), boost::asio::ssl::context::sslv23),
 #else
     m_ssl_context(0),
 #endif
@@ -61,9 +61,9 @@ server::server(const unsigned int tcp_port)
 server::server(const boost::asio::ip::tcp::endpoint& endpoint)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
     m_default_scheduler(), m_active_scheduler(m_default_scheduler),
-    m_tcp_acceptor(m_active_scheduler.get_executor()),
+    m_tcp_acceptor(m_active_scheduler.get_io_context()),
 #ifdef PION_HAVE_SSL
-    m_ssl_context(m_active_scheduler.get_executor(), boost::asio::ssl::context::sslv23),
+    m_ssl_context(m_active_scheduler.get_io_context(), boost::asio::ssl::context::sslv23),
 #else
     m_ssl_context(0),
 #endif
@@ -175,7 +175,7 @@ void server::set_ssl_key_file(const std::string& pem_key_file)
 tcp::connection_ptr server::create_connection()
 {
     // create a new TCP connection object
-    tcp::connection_ptr new_connection(connection::create(get_executor(),
+    tcp::connection_ptr new_connection(connection::create(get_io_context(),
                                                             m_ssl_context, m_ssl_flag,
                                                             boost::bind(&server::finish_connection,
                                                                         this, _1)));

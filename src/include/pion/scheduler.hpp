@@ -80,7 +80,7 @@ public:
     inline logger get_logger(void) { return m_logger; }
     
     /// returns an async I/O service used to schedule work
-    virtual boost::asio::io_service& get_executor(void) = 0;
+    virtual boost::asio::io_context& get_io_context(void) = 0;
     
     /**
      * schedules work to be performed by one of the pooled threads
@@ -88,16 +88,16 @@ public:
      * @param work_func work function to be executed
      */
     virtual void post(boost::function0<void> work_func) {
-        get_executor().post(work_func);
+        get_io_context().post(work_func);
     }
     
     /**
-     * thread function used to keep the io_service running
+     * thread function used to keep the io_context running
      *
      * @param my_service IO service used to re-schedule keep_running()
      * @param my_timer deadline timer used to keep the IO service active while running
      */
-    void keep_running(boost::asio::io_service& my_service,
+    void keep_running(boost::asio::io_context& my_service,
                      boost::asio::deadline_timer& my_timer);
     
     /**
@@ -130,7 +130,7 @@ public:
     
     
     /// processes work passed to the asio service & handles uncaught exceptions
-    void process_service_work(boost::asio::io_service& service);
+    void process_service_work(boost::asio::io_context& service);
 
 
 protected:
@@ -259,7 +259,7 @@ public:
     virtual ~single_service_scheduler() { shutdown(); }
     
     /// returns an async I/O service used to schedule work
-    virtual boost::asio::io_service& get_executor(void) { return m_service; }
+    virtual boost::asio::io_context& get_io_context(void) { return m_service; }
     
     /// Starts the thread scheduler (this is called automatically when necessary)
     virtual void startup(void);
@@ -275,7 +275,7 @@ protected:
 
     
     /// service used to manage async I/O events
-    boost::asio::io_service         m_service;
+    boost::asio::io_context         m_service;
 };
     
 
@@ -296,7 +296,7 @@ public:
     virtual ~one_to_one_scheduler() { shutdown(); }
     
     /// returns an async I/O service used to schedule work
-    virtual boost::asio::io_service& get_executor(void) {
+    virtual boost::asio::io_context& get_io_context(void) {
         boost::mutex::scoped_lock scheduler_lock(m_mutex);
         while (m_service_pool.size() < m_num_threads) {
             boost::shared_ptr<service_pair_type>  service_ptr(new service_pair_type());
@@ -314,7 +314,7 @@ public:
      *
      * @param n integer number representing the service object
      */
-    virtual boost::asio::io_service& get_executor(boost::uint32_t n) {
+    virtual boost::asio::io_context& get_io_context(boost::uint32_t n) {
         BOOST_ASSERT(n < m_num_threads);
         BOOST_ASSERT(n < m_service_pool.size());
         return m_service_pool[n]->first;
@@ -340,7 +340,7 @@ protected:
     /// typedef for a pair object where first is an IO service and second is a deadline timer
     struct service_pair_type {
         service_pair_type(void) : first(), second(first) {}
-        boost::asio::io_service         first;
+        boost::asio::io_context         first;
         boost::asio::deadline_timer     second;
     };
     
