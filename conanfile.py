@@ -27,7 +27,7 @@ class PionConan(ConanFile):
     def requirements(self):
         self.requires("zlib/[>=1.2.3]@%s/stable" % self.user)
         #self.requires("openssl/[~=1.1.0g]@%s/testing" % self.user)
-        self.requires("boost/[>=1.70.0]@%s/stable" % self.user)
+        self.requires("boost/[>=1.70.0]@%s/testing" % self.user)
 
     def package_id(self):
         self.info.requires["boost"].full_package_mode()
