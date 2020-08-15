@@ -197,7 +197,7 @@ protected:
     
     /// prunes orphaned connections that did not close cleanly
     /// and returns the remaining number of connections in the pool
-    std::size_t prune_connections(void);
+    std::size_t prune_connections(bool isForceClose = false);
     
     
     /// data type for a pool of TCP connections

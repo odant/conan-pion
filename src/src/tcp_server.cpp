@@ -131,10 +131,11 @@ void server::stop(bool wait_until_finished)
                           boost::bind(&connection::close, _1));
         }
     
+        int forceCountdown = -480; // force close and remove connections after 120 sec (480 cycles by 0.250 sec)
         // wait for all pending connections to complete
         while (! m_conn_pool.empty()) {
             // try to prun connections that didn't finish cleanly
-            if (prune_connections() == 0)
+            if (prune_connections(++forceCountdown == 0) == 0)
                 break;  // if no more left, then we can stop waiting
             // sleep for up to a quarter second to give open connections a chance to finish
             PION_LOG_INFO(m_logger, "Waiting for open connections to finish");
@@ -277,12 +278,12 @@ void server::finish_connection(const tcp::connection_ptr& tcp_conn)
     }
 }
 
-std::size_t server::prune_connections(void)
+std::size_t server::prune_connections(bool isForceClose)
 {
     // assumes that a server lock has already been acquired
     ConnectionPool::iterator conn_itr = m_conn_pool.begin();
     while (conn_itr != m_conn_pool.end()) {
-        if (conn_itr->unique()) {
+        if (conn_itr->unique() || isForceClose) {
             PION_LOG_WARN(m_logger, "Closing orphaned connection on port " << get_port());
             ConnectionPool::iterator erase_itr = conn_itr;
             ++conn_itr;
