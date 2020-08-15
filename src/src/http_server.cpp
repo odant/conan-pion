@@ -41,10 +41,11 @@ void server::handle_connection(const tcp::connection_ptr& tcp_conn)
 {
 	pion::http::connection_ptr connection = boost::static_pointer_cast<pion::http::connection>(tcp_conn);
 
-    request_reader_ptr& my_reader_ptr = connection->get_reader();
-	my_reader_ptr->clear();
-
-    my_reader_ptr->receive();
+    request_reader_ptr my_reader_ptr = connection->get_reader();
+    if (my_reader_ptr) {
+        my_reader_ptr->clear();
+        my_reader_ptr->receive();
+    }
 }
 
 void server::handle_request(const http::request_ptr& http_request_ptr,
