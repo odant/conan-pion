@@ -99,7 +99,7 @@ public:
      * @param service_name the name of the web service to load (searches plug-in
      *        directories and appends extensions)
      */
-    void load_service(const std::string& resource, const std::string& service_name);
+    http::plugin_service* load_service(const std::string& resource, const std::string& service_name);
     
     /**
      * sets a configuration option for the web service associated with resource

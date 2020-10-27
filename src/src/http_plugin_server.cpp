@@ -32,7 +32,7 @@ void plugin_server::add_service(const std::string& resource, http::plugin_servic
     PION_LOG_INFO(m_logger, "Loaded static web service for resource (" << clean_resource << ")");
 }
 
-void plugin_server::load_service(const std::string& resource, const std::string& service_name)
+http::plugin_service* plugin_server::load_service(const std::string& resource, const std::string& service_name)
 {
     const std::string clean_resource(strip_trailing_slash(resource));
     http::plugin_service *service_ptr;
@@ -40,6 +40,7 @@ void plugin_server::load_service(const std::string& resource, const std::string&
     http::server::add_resource(clean_resource, boost::ref(*service_ptr));
     service_ptr->set_resource(clean_resource);
     PION_LOG_INFO(m_logger, "Loaded web service plug-in for resource (" << clean_resource << "): " << service_name);
+    return service_ptr;
 }
 
 void plugin_server::set_service_option(const std::string& resource,
