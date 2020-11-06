@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class PionConan(ConanFile):
     name = "pion"
-    version = "5.0.7+6"
+    version = "5.0.7+7"
     license = "Boost Software License 1.0 - https://raw.githubusercontent.com/splunk/pion/develop/COPYING"
     description = "C++ framework for building lightweight HTTP interfaces"
     url = "https://github.com/odant/conan-pion"
