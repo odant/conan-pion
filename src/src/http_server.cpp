@@ -175,7 +175,12 @@ void server::add_resource(const std::string& resource,
 {
     boost::mutex::scoped_lock resource_lock(m_resource_mutex);
     const std::string clean_resource(strip_trailing_slash(resource));
-    m_resources.insert(std::make_pair(clean_resource, request_handler));
+    auto res = m_resources.emplace(clean_resource, std::move(request_handler));
+    if (!res.second) {
+        // insertion failed => replace exist
+        auto prevIt = res.first;
+        prevIt->second = std::move(request_handler);
+    }
     PION_LOG_INFO(m_logger, "Added request handler for HTTP resource: " << clean_resource);
 }
 
