@@ -175,7 +175,7 @@ void server::add_resource(const std::string& resource,
 {
     boost::mutex::scoped_lock resource_lock(m_resource_mutex);
     const std::string clean_resource(strip_trailing_slash(resource));
-    auto res = m_resources.emplace(clean_resource, std::move(request_handler));
+    auto res = m_resources.emplace(clean_resource, request_handler);
     if (!res.second) {
         // insertion failed => replace exist
         auto prevIt = res.first;
