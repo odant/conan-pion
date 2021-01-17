@@ -31,10 +31,10 @@ tcp::connection_ptr server::create_connection()
     tcp::connection_ptr new_connection(pion::http::connection::create(get_io_context(),
                                                                       m_ssl_context, m_ssl_flag, m_max_content_length,
                                                                       boost::bind(&server::finish_connection,
-                                                                                  this, _1),
-  														   			  boost::bind(&server::handle_request,
-																		      	  this, _1, _2, _3)));
-	return new_connection;
+                                                                                  this, boost::placeholders::_1),
+                                                                      boost::bind(&server::handle_request,
+                                                                                  this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3)));
+    return new_connection;
 }
 
 void server::handle_connection(const tcp::connection_ptr& tcp_conn)

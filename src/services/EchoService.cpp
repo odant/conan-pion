@@ -8,7 +8,7 @@
 //
 
 #include "EchoService.hpp"
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <pion/algorithm.hpp>
 #include <pion/http/response_writer.hpp>
 #include <pion/user.hpp>
@@ -79,7 +79,7 @@ void EchoService::operator()(const http::request_ptr& http_request_ptr, const tc
     writer->write_no_copy(http::types::STRING_CRLF);
     writer->write_no_copy(http::types::STRING_CRLF);
     std::for_each(http_request_ptr->get_headers().begin(), http_request_ptr->get_headers().end(),
-                  boost::bind(&writeDictionaryTerm, writer, _1));
+                  boost::bind(&writeDictionaryTerm, writer, boost::placeholders::_1));
     writer->write_no_copy(http::types::STRING_CRLF);
 
     // write query parameters
@@ -87,7 +87,7 @@ void EchoService::operator()(const http::request_ptr& http_request_ptr, const tc
     writer->write_no_copy(http::types::STRING_CRLF);
     writer->write_no_copy(http::types::STRING_CRLF);
     std::for_each(http_request_ptr->get_queries().begin(), http_request_ptr->get_queries().end(),
-                  boost::bind(&writeDictionaryTerm, writer, _1));
+                  boost::bind(&writeDictionaryTerm, writer, boost::placeholders::_1));
     writer->write_no_copy(http::types::STRING_CRLF);
     
     // write cookie parameters
@@ -95,7 +95,7 @@ void EchoService::operator()(const http::request_ptr& http_request_ptr, const tc
     writer->write_no_copy(http::types::STRING_CRLF);
     writer->write_no_copy(http::types::STRING_CRLF);
     std::for_each(http_request_ptr->get_cookies().begin(), http_request_ptr->get_cookies().end(),
-                  boost::bind(&writeDictionaryTerm, writer, _1));
+                  boost::bind(&writeDictionaryTerm, writer, boost::placeholders::_1));
     writer->write_no_copy(http::types::STRING_CRLF);
     
     // write POST content

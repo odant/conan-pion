@@ -8,7 +8,7 @@
 //
 
 #include <pion/tcp/timer.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/interprocess/sync/scoped_lock.hpp>
 
 
@@ -30,7 +30,7 @@ void timer::start(const boost::uint32_t seconds)
     m_timer_active = true;
     m_timer.expires_from_now(boost::posix_time::seconds(seconds));
     m_timer.async_wait(boost::bind(&timer::timer_callback,
-        shared_from_this(), _1));
+        shared_from_this(), boost::placeholders::_1));
 }
 
 void timer::cancel(void)

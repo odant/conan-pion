@@ -10,7 +10,7 @@
 #include <pion/config.hpp>
 
 #include <boost/asio.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/thread/mutex.hpp>
 #include <pion/admin_rights.hpp>
 #include <pion/tcp/server.hpp>
@@ -128,7 +128,7 @@ void server::stop(bool wait_until_finished)
         if (! wait_until_finished) {
             // this terminates any other open connections
             std::for_each(m_conn_pool.begin(), m_conn_pool.end(),
-                          boost::bind(&connection::close, _1));
+                          boost::bind(&connection::close, boost::placeholders::_1));
         }
     
         int forceCountdown = -480; // force close and remove connections after 120 sec (480 cycles by 0.250 sec)
@@ -179,7 +179,7 @@ tcp::connection_ptr server::create_connection()
     tcp::connection_ptr new_connection(connection::create(get_io_context(),
                                                             m_ssl_context, m_ssl_flag,
                                                             boost::bind(&server::finish_connection,
-                                                                        this, _1)));
+                                                                        this, boost::placeholders::_1)));
 	return new_connection;
 }
 

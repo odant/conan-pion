@@ -14,7 +14,7 @@
 
 #include <string>
 #include <boost/asio.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/shared_ptr.hpp>
 #include <pion/plugin.hpp>
 #include <pion/plugin_manager.hpp>
@@ -138,13 +138,13 @@ protected:
     /// called before the TCP server starts listening for new connections
     virtual void before_starting(void) {
         // call the start() method for each web service associated with this server
-        m_services.run(boost::bind(&http::plugin_service::start, _1));
+        m_services.run(boost::bind(&http::plugin_service::start, boost::placeholders::_1));
     }
     
     /// called after the TCP server has stopped listening for new connections
     virtual void after_stopping(void) {
         // call the stop() method for each web service associated with this server
-        m_services.run(boost::bind(&http::plugin_service::stop, _1));
+        m_services.run(boost::bind(&http::plugin_service::stop, boost::placeholders::_1));
     }
 
     

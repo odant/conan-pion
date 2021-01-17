@@ -47,7 +47,7 @@ void plugin_server::set_service_option(const std::string& resource,
                                  const std::string& name, const std::string& value)
 {
     const std::string clean_resource(strip_trailing_slash(resource));
-    m_services.run(clean_resource, boost::bind(&http::plugin_service::set_option, _1, name, value));
+    m_services.run(clean_resource, boost::bind(&http::plugin_service::set_option, boost::placeholders::_1, name, value));
     PION_LOG_INFO(m_logger, "Set web service option for resource ("
                   << resource << "): " << name << '=' << value);
 }

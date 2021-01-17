@@ -14,7 +14,7 @@
 #include <pion/http/response_writer.hpp>
 #include <pion/user.hpp>
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 
 #include <boost/filesystem/fstream.hpp>
 #include <boost/filesystem/operations.hpp>
