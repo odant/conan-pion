@@ -65,7 +65,7 @@ public:
     inline unsigned int get_port(void) const { return m_endpoint.port(); }
     
     /// sets tcp port number that the server listens for connections on
-    inline void set_port(unsigned int p) { m_endpoint.port(p); }
+    inline void set_port(unsigned short p) { m_endpoint.port(p); }
     
     /// returns IP address that the server listens for connections on
     inline boost::asio::ip::address get_address(void) const { return m_endpoint.address(); }
