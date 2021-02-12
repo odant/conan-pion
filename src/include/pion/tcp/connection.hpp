@@ -240,7 +240,7 @@ public:
      */
     template <typename ConnectHandler>
     inline void async_connect(const boost::asio::ip::address& remote_addr,
-                              const unsigned int remote_port,
+                              const unsigned short remote_port,
                               ConnectHandler handler)
     {
         boost::asio::ip::tcp::endpoint tcp_endpoint(remote_addr, remote_port);
@@ -272,7 +272,7 @@ public:
      * @see boost::asio::basic_socket_acceptor::connect()
      */
     inline boost::system::error_code connect(const boost::asio::ip::address& remote_addr,
-                                             const unsigned int remote_port)
+                                             const unsigned short remote_port)
     {
         boost::asio::ip::tcp::endpoint tcp_endpoint(remote_addr, remote_port);
         return connect(tcp_endpoint);
@@ -288,7 +288,7 @@ public:
      * @see boost::asio::basic_socket_acceptor::connect()
      */
     inline boost::system::error_code connect(const std::string& remote_server,
-                                             const unsigned int remote_port)
+                                             const unsigned short remote_port)
     {
         // query a list of matching endpoints
         boost::system::error_code ec;
