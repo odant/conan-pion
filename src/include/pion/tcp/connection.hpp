@@ -639,12 +639,9 @@ public:
     /// returns an ASIO endpoint for the client connection
     inline boost::asio::ip::tcp::endpoint get_remote_endpoint(void) const {
         boost::asio::ip::tcp::endpoint remote_endpoint;
-        try {
-            // const_cast is required since lowest_layer() is only defined non-const in asio
-            remote_endpoint = const_cast<ssl_socket_type&>(m_ssl_socket).lowest_layer().remote_endpoint();
-        } catch (boost::system::system_error& /* e */) {
-            // do nothing
-        }
+        // const_cast is required since lowest_layer() is only defined non-const in asio
+        boost::system::error_code ec;
+        remote_endpoint = const_cast<ssl_socket_type&>(m_ssl_socket).lowest_layer().remote_endpoint(ec);
         return remote_endpoint;
     }
 
