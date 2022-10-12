@@ -65,13 +65,14 @@ void scheduler::join(void)
 void scheduler::add_active_user(void)
 {
     if (++m_active_users == 1)
-        startup();
+        if (!m_is_running)
+            startup();
 }
 
 void scheduler::remove_active_user(void)
 {
     if (--m_active_users == 0)
-        shutdown();
+        m_no_more_active_users.notify_all();
 }
 
 boost::system_time scheduler::get_wakeup_time(boost::uint32_t sleep_sec,
