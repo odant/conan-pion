@@ -110,7 +110,7 @@ public:
     explicit connection(boost::asio::io_service& io_service, const bool ssl_flag = false)
         :
 #ifdef PION_HAVE_SSL
-        m_ssl_context(io_service, boost::asio::ssl::context::sslv23),
+        m_ssl_context(boost::asio::ssl::context::sslv23),
         m_ssl_socket(io_service, m_ssl_context),
         m_ssl_flag(ssl_flag),
 #else
@@ -132,7 +132,7 @@ public:
     connection(boost::asio::io_service& io_service, ssl_context_type& ssl_context)
         :
 #ifdef PION_HAVE_SSL
-        m_ssl_context(io_service, boost::asio::ssl::context::sslv23),
+        m_ssl_context(boost::asio::ssl::context::sslv23),
         m_ssl_socket(io_service, ssl_context), m_ssl_flag(true),
 #else
         m_ssl_context(0),
@@ -690,7 +690,7 @@ protected:
                   connection_handler finished_handler)
         :
 #ifdef PION_HAVE_SSL
-        m_ssl_context(io_service, boost::asio::ssl::context::sslv23),
+        m_ssl_context(boost::asio::ssl::context::sslv23),
         m_ssl_socket(io_service, ssl_context), m_ssl_flag(ssl_flag),
 #else
         m_ssl_context(0),
