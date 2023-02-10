@@ -19,10 +19,15 @@
 namespace pion {    // begin namespace pion
 namespace tcp {     // begin namespace tcp
 
-    
+single_service_scheduler& get_default_scheduler() {
+    /// the default scheduler object used to manage worker threads
+    static single_service_scheduler default_scheduler;
+	return default_scheduler;
+}
+
 // tcp::server member functions
 
-server::server(scheduler& sched, const unsigned int tcp_port)
+server::server(IScheduler& sched, const unsigned int tcp_port)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
     m_active_scheduler(sched),
     m_tcp_acceptor(m_active_scheduler.get_io_context()),
@@ -34,7 +39,7 @@ server::server(scheduler& sched, const unsigned int tcp_port)
     m_endpoint(boost::asio::ip::tcp::v4(), tcp_port), m_ssl_flag(false), m_is_listening(false)
 {}
     
-server::server(scheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
+server::server(IScheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
     m_active_scheduler(sched),
     m_tcp_acceptor(m_active_scheduler.get_io_context()),
@@ -48,7 +53,7 @@ server::server(scheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
 
 server::server(const unsigned int tcp_port)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
-    m_default_scheduler(), m_active_scheduler(m_default_scheduler),
+    m_active_scheduler(get_default_scheduler()),
     m_tcp_acceptor(m_active_scheduler.get_io_context()),
 #ifdef PION_HAVE_SSL
     m_ssl_context(boost::asio::ssl::context::sslv23),
@@ -60,7 +65,7 @@ server::server(const unsigned int tcp_port)
 
 server::server(const boost::asio::ip::tcp::endpoint& endpoint)
     : m_logger(PION_GET_LOGGER("pion.tcp.server")),
-    m_default_scheduler(), m_active_scheduler(m_default_scheduler),
+    m_active_scheduler(get_default_scheduler()),
     m_tcp_acceptor(m_active_scheduler.get_io_context()),
 #ifdef PION_HAVE_SSL
     m_ssl_context(boost::asio::ssl::context::sslv23),

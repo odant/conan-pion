@@ -66,7 +66,7 @@ public:
      * @param sched the scheduler that will be used to manage worker threads
      * @param tcp_port port number used to listen for new connections (IPv4)
      */
-    explicit plugin_server(scheduler& sched, const unsigned int tcp_port = 0)
+    explicit plugin_server(IScheduler& sched, const unsigned int tcp_port = 0)
         : http::server(sched, tcp_port)
     { 
         set_logger(PION_GET_LOGGER("pion.http.plugin_server"));
@@ -78,7 +78,7 @@ public:
      * @param sched the scheduler that will be used to manage worker threads
      * @param endpoint TCP endpoint used to listen for new connections (see ASIO docs)
      */
-    plugin_server(scheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
+    plugin_server(IScheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
         : http::server(sched, endpoint)
     { 
         set_logger(PION_GET_LOGGER("pion.http.plugin_server"));

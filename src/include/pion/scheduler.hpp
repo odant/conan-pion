@@ -30,10 +30,28 @@
 
 namespace pion {    // begin namespace pion
 
+class IScheduler
+{
+public:
+    virtual ~IScheduler(void) = default;
+	
+    /// registers an active user with the thread scheduler.  Shutdown of the
+    /// scheduler is deferred until there are no more active users.  This
+    /// ensures that any work queued will not reference destructed objects
+    virtual void add_active_user(void) = 0;
+
+    /// unregisters an active user with the thread scheduler
+    virtual void remove_active_user(void) = 0;
+	
+    /// returns an async I/O service used to schedule work
+    virtual boost::asio::io_context& get_io_context(void) = 0;	
+};
+
 ///
 /// scheduler: combines Boost.ASIO with a managed thread pool for scheduling
 /// 
 class PION_API scheduler :
+    public  IScheduler,
     private boost::noncopyable
 {
 public:
@@ -43,9 +61,6 @@ public:
         : m_logger(PION_GET_LOGGER("pion.scheduler")),
         m_num_threads(DEFAULT_NUM_THREADS), m_active_users(0), m_is_running(false)
     {}
-    
-    /// virtual destructor
-    virtual ~scheduler() {}
 
     /// Starts the thread scheduler (this is called automatically when necessary)
     virtual void startup(void) {}
@@ -59,10 +74,10 @@ public:
     /// registers an active user with the thread scheduler.  Shutdown of the
     /// scheduler is deferred until there are no more active users.  This
     /// ensures that any work queued will not reference destructed objects
-    void add_active_user(void);
+    void add_active_user(void) override;
 
     /// unregisters an active user with the thread scheduler
-    void remove_active_user(void);
+    void remove_active_user(void) override;
     
     /// returns true if the scheduler is running
     inline bool is_running(void) const { return m_is_running; }
@@ -78,9 +93,6 @@ public:
 
     /// returns the logger currently in use
     inline logger get_logger(void) { return m_logger; }
-    
-    /// returns an async I/O service used to schedule work
-    virtual boost::asio::io_context& get_io_context(void) = 0;
     
     /**
      * schedules work to be performed by one of the pooled threads
@@ -245,7 +257,7 @@ protected:
 ///
 /// single_service_scheduler: uses a single IO service to schedule work
 /// 
-class PION_API single_service_scheduler :
+class PION_API single_service_scheduler final :
     public multi_thread_scheduler
 {
 public:
@@ -282,7 +294,7 @@ protected:
 ///
 /// one_to_one_scheduler: uses a single IO service for each thread
 /// 
-class PION_API one_to_one_scheduler :
+class PION_API one_to_one_scheduler final :
     public multi_thread_scheduler
 {
 public:

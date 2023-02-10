@@ -126,7 +126,7 @@ protected:
      * @param sched the scheduler that will be used to manage worker threads
      * @param tcp_port port number used to listen for new connections (IPv4)
      */
-    explicit server(scheduler& sched, const unsigned int tcp_port = 0);
+    explicit server(IScheduler& sched, const unsigned int tcp_port = 0);
     
     /**
      * protected constructor so that only derived objects may be created
@@ -134,7 +134,7 @@ protected:
      * @param sched the scheduler that will be used to manage worker threads
      * @param endpoint TCP endpoint used to listen for new connections (see ASIO docs)
      */
-    server(scheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint);
+    server(IScheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint);
     
 	virtual tcp::connection_ptr create_connection();
 
@@ -208,7 +208,7 @@ protected:
     single_service_scheduler                m_default_scheduler;
 
     /// reference to the active scheduler object used to manage worker threads
-    scheduler &                             m_active_scheduler;
+    IScheduler &                            m_active_scheduler;
     
     /// manages async TCP connections
     boost::asio::ip::tcp::acceptor          m_tcp_acceptor;

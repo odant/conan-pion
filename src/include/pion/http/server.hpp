@@ -87,7 +87,7 @@ public:
      * @param sched the scheduler that will be used to manage worker threads
      * @param tcp_port port number used to listen for new connections (IPv4)
      */
-    explicit server(scheduler& sched, const unsigned int tcp_port = 0)
+    explicit server(IScheduler& sched, const unsigned int tcp_port = 0)
         : tcp::server(sched, tcp_port),
         m_bad_request_handler(server::handle_bad_request),
         m_not_found_handler(server::handle_not_found_request),
@@ -103,7 +103,7 @@ public:
      * @param sched the scheduler that will be used to manage worker threads
      * @param endpoint TCP endpoint used to listen for new connections (see ASIO docs)
      */
-    server(scheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
+    server(IScheduler& sched, const boost::asio::ip::tcp::endpoint& endpoint)
         : tcp::server(sched, endpoint),
         m_bad_request_handler(server::handle_bad_request),
         m_not_found_handler(server::handle_not_found_request),
