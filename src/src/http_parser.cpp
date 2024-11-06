@@ -793,19 +793,24 @@ boost::tribool parser::finish_header_parsing(http::message& http_msg,
                 m_message_parse_state = PARSE_END;
                 rc = true;
             } else {
-                m_message_parse_state = PARSE_CONTENT;
-                m_bytes_content_remaining = http_msg.get_content_length();
+                if (!m_parse_headers_only) {
+                    m_bytes_content_remaining = http_msg.get_content_length();
 
-                // check if content-length exceeds maximum allowed
-                if (m_bytes_content_remaining > m_max_content_length)
-                    http_msg.set_content_length(m_max_content_length);
-
-                if (m_parse_headers_only) {
+                    // check if content-length exceeds maximum allowed
+                    if (m_bytes_content_remaining <= m_max_content_length) {
+                        m_message_parse_state = PARSE_CONTENT;
+                        // allocate a buffer for payload content (may be zero-size)
+                        http_msg.create_content_buffer();
+                    }
+                    else {
+                        PION_LOG_ERROR(m_logger, "Content length is too big");
+                        set_error(ec, ERROR_INVALID_CONTENT_LENGTH);
+                        return false;
+                    }
+                }
+                else {
                     // return true if parsing headers only
                     rc = true;
-                } else {
-                    // allocate a buffer for payload content (may be zero-size)
-                    http_msg.create_content_buffer();
                 }
             }
 
