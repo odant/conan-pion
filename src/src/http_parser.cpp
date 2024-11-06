@@ -106,7 +106,7 @@ boost::tribool parser::parse(http::message& http_msg,
 
             // parsing payload content with no length (until EOF)
             case PARSE_CONTENT_NO_LENGTH:
-                consume_content_as_next_chunk(http_msg.get_chunk_cache());
+                rc = consume_content_as_next_chunk(http_msg.get_chunk_cache(), ec);
                 total_bytes_parsed += m_bytes_last_read;
                 break;
 
@@ -690,7 +690,7 @@ boost::tribool parser::finish_header_parsing(http::message& http_msg,
                     }
                     else {
                         PION_LOG_ERROR(m_logger, "Content length is too big");
-                        set_error(ec, ERROR_INVALID_CONTENT_LENGTH);
+                        set_error(ec, ERROR_CONTENT_EXCEEDS_LIMIT);
                         return false;
                     }
                 }
@@ -1340,6 +1340,10 @@ boost::tribool parser::parse_chunks(http::message::chunk_cache_t& chunks,
                     chunks.push_back(*m_read_ptr);
                     m_bytes_read_in_current_chunk++;
                 }
+                else {
+                    set_error(ec, ERROR_CONTENT_EXCEEDS_LIMIT);
+                    return false;
+                }
             }
             if (m_bytes_read_in_current_chunk == m_size_of_current_chunk) {
                 m_chunked_content_parse_state = PARSE_EXPECTING_CR_AFTER_CHUNK;
@@ -1408,7 +1412,7 @@ boost::tribool parser::parse_chunks(http::message::chunk_cache_t& chunks,
 }
 
 boost::tribool parser::consume_content(http::message& http_msg,
-    boost::system::error_code& /* ec */)
+    boost::system::error_code& ec)
 {
     size_t content_bytes_to_read;
     size_t content_bytes_available = bytes_available();
@@ -1438,6 +1442,8 @@ boost::tribool parser::consume_content(http::message& http_msg,
             // copy only enough bytes to fill up the content buffer
             memcpy(http_msg.get_content() + m_bytes_content_read, m_read_ptr, 
                 m_max_content_length - m_bytes_content_read);
+            set_error(ec, ERROR_CONTENT_EXCEEDS_LIMIT);
+            rc = false;
         } else {
             // copy all bytes available
             memcpy(http_msg.get_content() + m_bytes_content_read, m_read_ptr, content_bytes_to_read);
@@ -1452,7 +1458,7 @@ boost::tribool parser::consume_content(http::message& http_msg,
     return rc;
 }
 
-std::size_t parser::consume_content_as_next_chunk(http::message::chunk_cache_t& chunks)
+boost::tribool parser::consume_content_as_next_chunk(http::message::chunk_cache_t& chunks, boost::system::error_code& ec)
 {
     if (bytes_available() == 0) {
         m_bytes_last_read = 0;
@@ -1466,13 +1472,18 @@ std::size_t parser::consume_content_as_next_chunk(http::message::chunk_cache_t& 
             while (m_read_ptr < m_read_end_ptr) {
                 if (chunks.size() < m_max_content_length)
                     chunks.push_back(*m_read_ptr);
+                else {
+                    set_error(ec, ERROR_CONTENT_EXCEEDS_LIMIT);
+                    return false;
+                }
                 ++m_read_ptr;
             }
         }
         m_bytes_total_read += m_bytes_last_read;
         m_bytes_content_read += m_bytes_last_read;
     }
-    return m_bytes_last_read;
+    
+    return boost::indeterminate;
 }
 
 void parser::finish(http::message& http_msg) const

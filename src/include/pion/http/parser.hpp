@@ -69,6 +69,7 @@ public:
         ERROR_MISSING_CHUNK_DATA,
         ERROR_MISSING_HEADER_DATA,
         ERROR_MISSING_TOO_MUCH_CONTENT,
+        ERROR_CONTENT_EXCEEDS_LIMIT
     };
     
     /// class-specific error category
@@ -115,6 +116,8 @@ public:
                 return "missing chunk data";
             case ERROR_MISSING_TOO_MUCH_CONTENT:
                 return "missing too much content";
+            case ERROR_CONTENT_EXCEEDS_LIMIT:
+                return "content size exceeds the limit";
             }
             return "parser error";
         }
@@ -520,7 +523,7 @@ protected:
      * @param chunk_buffers buffers to be populated from parsing chunked content
      * @return std::size_t number of content bytes consumed, if any
      */
-    std::size_t consume_content_as_next_chunk(http::message::chunk_cache_t& chunk_buffers);
+    boost::tribool consume_content_as_next_chunk(http::message::chunk_cache_t& chunk_buffers, boost::system::error_code& ec);
 
     /**
      * compute and sets a HTTP Message data integrity status
