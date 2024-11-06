@@ -169,21 +169,6 @@ public:
     boost::tribool parse(http::message& http_msg, boost::system::error_code& ec);
 
     /**
-     * attempts to continue parsing despite having missed data (length is known but content is not)
-     *
-     * @param http_msg the HTTP message object to populate from parsing
-     * @param len the length in bytes of the missing data
-     * @param ec error_code contains additional information for parsing errors
-     *
-     * @return boost::tribool result of parsing:
-     *                        false = message has an error,
-     *                        true = finished parsing HTTP message,
-     *                        indeterminate = not yet finished parsing HTTP message
-     */
-    boost::tribool parse_missing_data(http::message& http_msg, std::size_t len,
-        boost::system::error_code& ec);
-
-    /**
      * finishes parsing an HTTP response message
      *
      * @param http_msg the HTTP message object to finish
