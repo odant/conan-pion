@@ -46,7 +46,7 @@ public:
      * @param finished_handler function called when a server has finished
      *                         handling the connection
      */
-    static inline boost::shared_ptr<connection> create(boost::asio::io_service& io_service,
+    static inline boost::shared_ptr<connection> create(boost::asio::io_context& io_service,
                                                           ssl_context_type& ssl_context,
                                                           const bool ssl_flag, size_t max_content_length,
                                                           connection_handler finished_handler,
@@ -65,7 +65,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_flag if true then the connection will be encrypted using SSL 
      */
-    explicit connection(boost::asio::io_service& io_service, const bool ssl_flag = false)
+    explicit connection(boost::asio::io_context& io_service, const bool ssl_flag = false)
         : pion::tcp::connection(io_service, ssl_flag)
 	{ }
     
@@ -75,7 +75,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_context asio ssl context associated with the connection
      */
-    connection(boost::asio::io_service& io_service, ssl_context_type& ssl_context)
+    connection(boost::asio::io_context& io_service, ssl_context_type& ssl_context)
         : pion::tcp::connection(io_service, ssl_context)
     { }
     
@@ -104,7 +104,7 @@ protected:
      * @param finished_handler function called when a server has finished
      *                         handling the connection
      */
-    connection(boost::asio::io_service& io_service,
+    connection(boost::asio::io_context& io_service,
                   ssl_context_type& ssl_context,
                   const bool ssl_flag,
                   connection_handler finished_handler)

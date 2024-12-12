@@ -66,7 +66,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_flag if true then the connection will be encrypted using SSL 
      */
-    explicit stream_buffer(boost::asio::io_service& io_service,
+    explicit stream_buffer(boost::asio::io_context& io_service,
                              const bool ssl_flag = false)
         : m_conn_ptr(new connection(io_service, ssl_flag)),
         m_read_buf(m_conn_ptr->get_read_buffer().c_array())
@@ -80,7 +80,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_context asio ssl context associated with the connection
      */
-    stream_buffer(boost::asio::io_service& io_service,
+    stream_buffer(boost::asio::io_context& io_service,
                     connection::ssl_context_type& ssl_context)
         : m_conn_ptr(new connection(io_service, ssl_context)),
         m_read_buf(m_conn_ptr->get_read_buffer().c_array())
@@ -352,7 +352,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_flag if true then the connection will be encrypted using SSL 
      */
-    explicit stream(boost::asio::io_service& io_service,
+    explicit stream(boost::asio::io_context& io_service,
                        const bool ssl_flag = false)
         : std::basic_iostream<char, std::char_traits<char> >(NULL), m_tcp_buf(io_service, ssl_flag)
     {
@@ -366,7 +366,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_context asio ssl context associated with the connection
      */
-    stream(boost::asio::io_service& io_service,
+    stream(boost::asio::io_context& io_service,
               connection::ssl_context_type& ssl_context)
         : std::basic_iostream<char, std::char_traits<char> >(NULL), m_tcp_buf(io_service, ssl_context)
     {

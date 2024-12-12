@@ -9,6 +9,7 @@
 
 #include <boost/exception/diagnostic_information.hpp>
 #include <boost/date_time/posix_time/posix_time_duration.hpp>
+#include <boost/asio/executor_work_guard.hpp>
 #include <pion/scheduler.hpp>
 
 namespace pion {    // begin namespace pion
@@ -81,8 +82,8 @@ boost::system_time scheduler::get_wakeup_time(boost::uint32_t sleep_sec,
     return boost::get_system_time() + boost::posix_time::seconds(sleep_sec) + boost::posix_time::microseconds(sleep_nsec / 1000);
 }
                      
-void scheduler::process_service_work(boost::asio::io_service& service) {
-    boost::asio::io_service::work work(service);
+void scheduler::process_service_work(boost::asio::io_context& service) {
+    boost::asio::executor_work_guard<boost::asio::io_context::executor_type> work(boost::asio::make_work_guard(service));
     while (m_is_running) {
         try {
             service.run();
@@ -107,7 +108,7 @@ void single_service_scheduler::startup(void)
         m_is_running = true;
         
         // schedule a work item to make sure that the service doesn't complete
-        m_service.reset();
+        m_service.restart();
         
         // start multiple threads to handle async tasks
         for (boost::uint32_t n = 0; n < m_num_threads; ++n) {

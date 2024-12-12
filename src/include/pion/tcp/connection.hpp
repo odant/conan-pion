@@ -70,7 +70,7 @@ public:
 #else
     class ssl_socket_type {
     public:
-        ssl_socket_type(boost::asio::io_service& io_service) : m_socket(io_service) {}
+        ssl_socket_type(boost::asio::io_context& io_service) : m_socket(io_service) {}
         inline socket_type& next_layer(void) { return m_socket; }
         inline const socket_type& next_layer(void) const { return m_socket; }
         inline socket_type::lowest_layer_type& lowest_layer(void) { return m_socket.lowest_layer(); }
@@ -92,7 +92,7 @@ public:
      * @param finished_handler function called when a server has finished
      *                         handling the connection
      */
-    static inline boost::shared_ptr<connection> create(boost::asio::io_service& io_service,
+    static inline boost::shared_ptr<connection> create(boost::asio::io_context& io_service,
                                                           ssl_context_type& ssl_context,
                                                           const bool ssl_flag,
                                                           connection_handler finished_handler)
@@ -107,7 +107,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_flag if true then the connection will be encrypted using SSL 
      */
-    explicit connection(boost::asio::io_service& io_service, const bool ssl_flag = false)
+    explicit connection(boost::asio::io_context& io_service, const bool ssl_flag = false)
         :
 #ifdef PION_HAVE_SSL
         m_ssl_context(boost::asio::ssl::context::sslv23),
@@ -129,7 +129,7 @@ public:
      * @param io_service asio service associated with the connection
      * @param ssl_context asio ssl context associated with the connection
      */
-    connection(boost::asio::io_service& io_service, ssl_context_type& ssl_context)
+    connection(boost::asio::io_context& io_service, ssl_context_type& ssl_context)
         :
 #ifdef PION_HAVE_SSL
         m_ssl_context(boost::asio::ssl::context::sslv23),
@@ -293,22 +293,16 @@ public:
         // query a list of matching endpoints
         boost::system::error_code ec;
         boost::asio::ip::tcp::resolver resolver(m_ssl_socket.lowest_layer().get_executor());
-        boost::asio::ip::tcp::resolver::query query(remote_server,
-            boost::lexical_cast<std::string>(remote_port),
-            boost::asio::ip::tcp::resolver::query::numeric_service);
-        boost::asio::ip::tcp::resolver::iterator endpoint_iterator = resolver.resolve(query, ec);
+        auto endpoints = resolver.resolve(remote_server, boost::lexical_cast<std::string>(remote_port), ec);
         if (ec)
             return ec;
 
-        // try each one until we are successful
-        ec = boost::asio::error::host_not_found;
-        boost::asio::ip::tcp::resolver::iterator end;
-        while (ec && endpoint_iterator != end) {
-            boost::asio::ip::tcp::endpoint ep(endpoint_iterator->endpoint());
-            ++endpoint_iterator;
-            ec = connect(ep);
-            if (ec)
-                close();
+        for (auto& entry : endpoints) {
+            auto endpoint = entry.endpoint();
+            ec = connect(endpoint);
+            if (!ec)
+                break;
+            close();
         }
 
         return ec;
@@ -684,7 +678,7 @@ protected:
      * @param finished_handler function called when a server has finished
      *                         handling the connection
      */
-    connection(boost::asio::io_service& io_service,
+    connection(boost::asio::io_context& io_service,
                   ssl_context_type& ssl_context,
                   const bool ssl_flag,
                   connection_handler finished_handler)

@@ -100,7 +100,7 @@ public:
      * @param work_func work function to be executed
      */
     virtual void post(boost::function0<void> work_func) {
-        get_io_context().post(work_func);
+        boost::asio::post(get_io_context(), work_func);
     }
     
     /**
@@ -283,7 +283,7 @@ protected:
     virtual void stop_services(void) { m_service.stop(); }
     
     /// finishes all services used to schedule work
-    virtual void finish_services(void) { m_service.reset(); }
+    virtual void finish_services(void) { m_service.restart(); }
 
     
     /// service used to manage async I/O events
