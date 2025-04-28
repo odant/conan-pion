@@ -1,0 +1,52 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 871c1c8..ac8bf05 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -7,7 +7,7 @@
+ # See http://www.boost.org/LICENSE_1_0.txt
+ # ---------------------------------------------------------------------
+ 
+-cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.15)
+ set(PROJECT_NAME pion_solution)
+ project(${PROJECT_NAME} CXX)
+ 
+diff --git a/src/services/CMakeLists.txt b/src/services/CMakeLists.txt
+index 77b7063..2ad4ab9 100644
+--- a/services/CMakeLists.txt
++++ b/services/CMakeLists.txt
+@@ -7,7 +7,7 @@
+ # See http://www.boost.org/LICENSE_1_0.txt
+ # ---------------------------------------------------------------------
+ 
+-cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.15)
+ 
+ set(PROJECT_NAME services)
+ project(${PROJECT_NAME} CXX)
+diff --git a/src/src/CMakeLists.txt b/src/src/CMakeLists.txt
+index e50dcb3..71dc274 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -7,7 +7,7 @@
+ # See http://www.boost.org/LICENSE_1_0.txt
+ # ---------------------------------------------------------------------
+ 
+-cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.15)
+ 
+ set(PROJECT_NAME pion)
+ project(${PROJECT_NAME} CXX)
+diff --git a/src/utils/CMakeLists.txt b/src/utils/CMakeLists.txt
+index 7b88f93..d9d1d7b 100644
+--- a/utils/CMakeLists.txt
++++ b/utils/CMakeLists.txt
+@@ -7,7 +7,7 @@
+ # See http://www.boost.org/LICENSE_1_0.txt
+ # ---------------------------------------------------------------------
+ 
+-cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.15)
+ 
+ set(PROJECT_NAME utils)
+ project(${PROJECT_NAME} CXX)
