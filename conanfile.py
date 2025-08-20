@@ -14,7 +14,7 @@ class PionConan(ConanFile):
     default_options = {
         "ninja": True
     }
-    exports_sources = "src/*", "fix_cmake_version.patch"
+    exports_sources = "src/*", "fix_cmake_version.patch", "remove_multipart_parse.patch"
     no_copy_source = True
     build_policy = "missing"
     package_type = "static-library"
@@ -39,6 +39,7 @@ class PionConan(ConanFile):
         
     def source(self):    
         tools.files.patch(self, patch_file="fix_cmake_version.patch")
+        tools.files.patch(self, patch_file="remove_multipart_parse.patch")
         
     def generate(self):
         benv = tools.env.VirtualBuildEnv(self)
