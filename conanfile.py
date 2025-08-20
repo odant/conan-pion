@@ -80,7 +80,7 @@ class PionConan(ConanFile):
     def package(self):
         cmake = tools.cmake.CMake(self)
         cmake.install()
-        tools.files.copy(self, "pion*.pdb", dst=os.path.join(self.package_folder, "bin"), src=os.path.join(self.build_folder, "lib"), keep_path=False)
+        tools.files.copy(self, "**/pion*.pdb", dst=os.path.join(self.package_folder, "bin"), src=self.build_folder, keep_path=False)
 
     def package_id(self):
         self.info.requires["boost"].full_package_mode()
