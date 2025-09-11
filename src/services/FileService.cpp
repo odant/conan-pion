@@ -13,6 +13,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/fstream.hpp>
+#include <boost/filesystem/directory.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/exception/diagnostic_information.hpp>
 

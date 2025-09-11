@@ -64,7 +64,7 @@ private:
     tcp::connection_weak_ptr                m_conn_ptr;
 
     /// deadline timer used to timeout TCP operations
-    boost::asio::deadline_timer             m_timer;
+    boost::asio::system_timer               m_timer;
     
     /// mutex used to synchronize the TCP connection timer
     typedef boost::interprocess::ipcdetail::spin_mutex spin_mutex_t;

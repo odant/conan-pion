@@ -110,7 +110,7 @@ public:
      * @param my_timer deadline timer used to keep the IO service active while running
      */
     void keep_running(boost::asio::io_context& my_service,
-                     boost::asio::deadline_timer& my_timer);
+                     boost::asio::system_timer& my_timer);
     
     /**
      * puts the current thread to sleep for a specific period of time
@@ -353,7 +353,7 @@ protected:
     struct service_pair_type {
         service_pair_type(void) : first(), second(first) {}
         boost::asio::io_context         first;
-        boost::asio::deadline_timer     second;
+        boost::asio::system_timer       second;
     };
     
     /// typedef for a pool of IO services
